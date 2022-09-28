@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import './App.css';
-import {letters} from './helpers/letters';
+import { HangImage } from './components/HangImage';
+import { letters } from './helpers/letters';
 
 function App() {
+  
+
   
   return (
     <div className="App">
       {/*imagen juego*/}
-      <h3></h3>
+      <HangImage imageNumber={}/>
       
       {/*palabra oculta*/}
       <h3>_ _ _ _ _ _ </h3>
