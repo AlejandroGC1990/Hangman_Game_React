@@ -5,24 +5,39 @@ import { letters } from './helpers/letters';
 
 function App() {
   
+  const [word] = useState('COMPUTADORA');
+  const [hiddenWord, setHiddenWord] = useState('_ '.repeat(word.length));
   const [ attempts, setAttempts ] = useState(0);
 
   const checkLetter = ( letter:string ) => {
-    setAttempts(Math.min(attempts + 1, 9));
+    if(!word.includes(letter)){
+      setAttempts(Math.min(attempts + 1, 9));
+      return;
+    }
 
+    const hiddenWordArray = hiddenWord.split(' ');
+
+    for(let i = 0; i < word.length; i++){
+      if(word[i] === letter){
+        hiddenWordArray[i] = letter;
+      }
+    } 
+    
+    setHiddenWord(hiddenWordArray.join(' '));
   }
 
   return (
     <div className="App">
-      {/*imagen juego*/}
+      {/*Hangman img*/}
       <HangImage imageNumber={ attempts }/>
       
-      {/*palabra oculta*/}
-      <h3>_ _ _ _ _ _ </h3>
+      {/*Hidden word*/}
+      <h3>{hiddenWord}</h3>
       
       {/*Intentos*/}
       <h3>Intentos: {attempts}</h3>
 
+      {/*Buttons for letters and control failed attempts*/}
       {
         letters.map( (letter) => (
           <button 
