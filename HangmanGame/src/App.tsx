@@ -5,23 +5,31 @@ import { letters } from './helpers/letters';
 
 function App() {
   
+  const [ attempts, setAttempts ] = useState(0);
 
-  
+  const checkLetter = ( letter:string ) => {
+    setAttempts(Math.min(attempts + 1, 9));
+
+  }
+
   return (
     <div className="App">
       {/*imagen juego*/}
-      <HangImage imageNumber={}/>
+      <HangImage imageNumber={ attempts }/>
       
       {/*palabra oculta*/}
       <h3>_ _ _ _ _ _ </h3>
       
       {/*Intentos*/}
-      <h3>Intentos</h3>
+      <h3>Intentos: {attempts}</h3>
 
       {
         letters.map( (letter) => (
-          <button key= { letter }> 
-            {letter} 
+          <button 
+            onClick={ () => checkLetter(letter) }
+            key= { letter }
+            > 
+              {letter} 
           </button>
         ))
       }
