@@ -93,10 +93,7 @@ function App() {
       <br></br>
 
       <button onClick={newGame}>New Game</button>
-
-
     </div>
-  
   )
 }
 
